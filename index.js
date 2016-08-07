@@ -73,5 +73,5 @@ function shouldIndex(_path) {
   }
 
   // FIXME: This is susceptible to false positives and negatives.
-  return data.includes(`module.exports = require('./index.generated')`);
+  return data.includes(`require('./index.generated')`);
 }
