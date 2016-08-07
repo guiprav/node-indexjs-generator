@@ -13,5 +13,8 @@
   "bugs": {
     "url": "https://github.com/n2liquid/node-indexjs-generator/issues"
   },
-  "homepage": "https://github.com/n2liquid/node-indexjs-generator#readme"
+  "homepage": "https://github.com/n2liquid/node-indexjs-generator#readme",
+  "dependencies": {
+    "glob": "^7.0.5"
+  }
 }
