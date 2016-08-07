@@ -56,9 +56,9 @@ glob.sync(`**/index.js`).forEach(indexerPath => {
   const indexedModPath = `${dirPath}/index.generated.js`;
 
   fs.writeFileSync(indexedModPath, [
-    'module.exports = ' + JSON.stringify(root, null, 2).replace(
+    'Object.assign(exports, ' + JSON.stringify(root, null, 2).replace(
       /"(require\(.+\))"/g, '$1'
-    ) + ';',
+    ) + ');',
   ].join('\n'));
 });
 
