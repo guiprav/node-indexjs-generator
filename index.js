@@ -6,12 +6,17 @@ const path = require('path');
 
 const glob = require('glob');
 
-const target = process.argv[2] || '.';
+{
+  const target = process.argv[2];
 
-glob.sync(`${target}/**/index.js`).forEach(indexerPath => {
-  const relIndexerPath = path.relative(target, indexerPath);
+  if (target) {
+    process.chdir(target);
+    console.log(`> cd ${target}`);
+  }
+}
 
-  const dirPath = path.dirname(relIndexerPath);
+glob.sync(`**/index.js`).forEach(indexerPath => {
+  const dirPath = path.dirname(indexerPath);
 
   const indexPath = `${dirPath}/index.js`;
 
