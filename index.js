@@ -53,7 +53,7 @@ glob.sync(`**/index.js`).forEach(indexerPath => {
     }, root)[objName] = `require('./${relModPath}')`;
   });
 
-  const indexedModPath = `${dirPath}/.indexed.js`;
+  const indexedModPath = `${dirPath}/generated-index.js`;
 
   fs.writeFileSync(indexedModPath, [
     'module.exports = ' + JSON.stringify(root, null, 2).replace(
@@ -73,5 +73,5 @@ function shouldIndex(_path) {
   }
 
   // FIXME: This is susceptible to false positives and negatives.
-  return data.includes(`module.exports = require('./.indexed')`);
+  return data.includes(`module.exports = require('./generated-index')`);
 }
