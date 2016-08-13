@@ -27,7 +27,7 @@ glob.sync(`**/index.js`).forEach(indexerPath => {
   const root = {};
 
   // FIXME: Don't ignore nested index modules.
-  glob.sync(`${dirPath}/**/!(index).js`).forEach(modPath => {
+  glob.sync(`${dirPath}/**/!(index|index.generated).js`).forEach(modPath => {
     const relModPath = path.relative(dirPath, modPath);
 
     const objPath = relModPath.split(path.sep);
