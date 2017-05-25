@@ -42,7 +42,7 @@ glob.sync(`**/index.js`).forEach(indexerPath => {
       }
     }
 
-    objPath.reduce((node, key) => {
+    const parentNode = objPath.reduce((node, key) => {
       let child = node[key];
 
       if (!child) {
@@ -50,7 +50,13 @@ glob.sync(`**/index.js`).forEach(indexerPath => {
       }
 
       return child;
-    }, root)[objName] = `require('./${relModPath}')`;
+    }, root);
+
+    if (typeof parentNode === 'string') {
+      return;
+    }
+
+    parentNode[objName] = `require('./${relModPath}')`;
   });
 
   const indexedModPath = `${dirPath}/index.generated.js`;
